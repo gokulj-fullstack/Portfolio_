@@ -4,8 +4,10 @@ export const PERSONAL_INFO = {
   headline: 'I make modern websites & full-stack web applications.',
   subheadline: 'Full Stack Developer & Freelancer',
   bio: 'Computer Science & Engineering graduate from Tagore Engineering College (Anna University, 2025). Passionate about building modern, high-performance web applications, robust REST APIs, and scalable technology solutions for businesses and individual clients using React.js, Vite, FastAPI, and Django.',
-  location: 'Chennai, Tamil Nadu, India',
+  location: 'Chennai, Tamil Nadu, India 601301',
   email: 'jgokul823@gmail.com',
+  phone: '+91-9080703491',
+  resumeUrl: '/assets/Gokul_J_Resume.pdf',
   github: 'https://github.com',
   linkedin: 'https://linkedin.com',
   education: {
@@ -14,8 +16,16 @@ export const PERSONAL_INFO = {
     institution: 'Tagore Engineering College',
     university: 'Anna University',
     graduationYear: 2025,
+    cgpa: '7.58 / 10',
     description: 'Specialized coursework in Data Structures, Relational Database Systems, Software Engineering, Object-Oriented Programming, and Web Development.'
   },
+  certifications: [
+    {
+      title: 'Python Full Stack Development',
+      issuer: 'FITA Academy'
+    }
+  ],
+  languages: ['English', 'Tamil'],
   professionalGoal: 'Build modern websites, full-stack web applications, and technology solutions for businesses and individual clients.'
 };
 
@@ -31,25 +41,26 @@ export const TECHNICAL_SKILLS = {
   frontend: [
     { name: 'React.js', tag: 'Core Stack', desc: 'Component architecture, Hooks, Context, State Management' },
     { name: 'Vite', tag: 'Tooling', desc: 'Modern build tool, lightning-fast HMR, optimized bundling' },
-    { name: 'Tailwind CSS', tag: 'Styling', desc: 'Utility-first modern responsive UI design' },
-    { name: 'Bootstrap', tag: 'Framework', desc: 'Responsive grid systems and accessible layout components' },
-    { name: 'Responsive Web Design', tag: 'Design', desc: 'Mobile-first, cross-browser compatible, fluid typography' }
+    { name: 'Framer Motion & GSAP', tag: 'Animation', desc: 'Hardware-accelerated fluid motion, scroll reveals, dynamic layout physics' },
+    { name: 'Tailwind CSS & Bootstrap', tag: 'Styling', desc: 'Modern utility-first styling and accessible responsive design systems' },
+    { name: 'React Router', tag: 'Navigation', desc: 'Declarative client-side routing, protected auth routes, dynamic params' }
   ],
   backend: [
     { name: 'FastAPI', tag: 'Core Backend', desc: 'High-performance async Python REST APIs with automatic OpenAPI docs & Pydantic' },
     { name: 'Django & DRF', tag: 'Core Backend', desc: 'Full-stack Django web development, ORM, authentication, Django REST Framework APIs' },
     { name: 'REST APIs', tag: 'Architecture', desc: 'RESTful API design, HTTP semantics, JSON payloads, CORS, token auth' },
-    { name: 'Pydantic', tag: 'Validation', desc: 'Data parsing, strict schema validation, type safety' }
+    { name: 'Role-Based Authentication', tag: 'Security', desc: 'Secure session & JWT auth with granular role-based permissions' }
   ],
   databases: [
     { name: 'MySQL', type: 'Relational DB', desc: 'Relational table design, indexes, transactional queries' },
-    { name: 'PostgreSQL', type: 'Relational DB', desc: 'Advanced relational modeling, ACID compliance, ORM integration' }
+    { name: 'PostgreSQL', type: 'Relational DB', desc: 'Advanced relational modeling, ACID compliance, ORM integration' },
+    { name: 'SQLite', type: 'Embedded DB', desc: 'Lightweight local persistence, rapid development, automated tests' }
   ],
   toolsAndPlatforms: [
-    { name: 'GitHub', category: 'Version Control', desc: 'Git branching, pull requests, collaboration, CI workflows' },
-    { name: 'VS Code', category: 'IDE', desc: 'Debugging, linting, formatting, full-stack development' },
-    { name: 'Render', category: 'Cloud Deployment', desc: 'Web service hosting, static site deployment, environment config' },
-    { name: 'Cloudinary', category: 'Media Storage', desc: 'Cloud image and media management, asset transformations' }
+    { name: 'Git & GitHub', category: 'Version Control', desc: 'Git branching, pull requests, collaboration, CI workflows' },
+    { name: 'VS Code & Vite', category: 'Tooling', desc: 'Full-stack development, modern bundler, debugging & linting' },
+    { name: 'Razorpay Payment Gateway', category: 'Payments', desc: 'Online checkout integration, order generation, signature verification' },
+    { name: 'WhatsApp Cloud API', category: 'Integration', desc: 'Direct message dispatch, interactive lead alerts, click-to-chat automation' }
   ]
 };
 
@@ -228,25 +239,35 @@ export const FREELANCE_SERVICES = [
 export const EXPERIENCE_AND_TRAINING = [
   {
     type: 'Internship',
-    title: 'Web Development Intern',
-    organization: 'GB Tech Corp',
-    location: 'Tambaram, Chennai',
-    period: 'Internship Experience',
-    summary: 'Developed an educational website using web technologies. Built user authentication flows, integrated backend databases, and implemented dynamic content management for students and instructors.',
-    skills: ['Web Development', 'User Authentication', 'Database Integration', 'Dynamic Content']
+    title: 'Full Stack Developer Intern',
+    organization: 'Aminiod AI',
+    location: 'Chennai, India',
+    period: '3 months',
+    summary: 'Working as a Full Stack Developer intern, building and maintaining web application features across the React frontend and backend APIs. Developing and integrating REST APIs with responsive user interfaces in a team environment.',
+    skills: ['React.js', 'REST APIs', 'Full Stack Development', 'Team Collaboration']
   },
   {
-    type: 'Training',
-    title: 'Python Full Stack Development Training',
+    type: 'Internship',
+    title: 'Full Stack Developer Intern',
+    organization: 'GB Tech Corp',
+    location: 'Tambaram, Chennai',
+    period: '2024',
+    summary: 'Built a complete user authentication system using React, Django REST Framework, and MySQL, covering registration, login, and protected routes. Developed and consumed REST APIs and connected them to responsive React interfaces. Used Git and GitHub for version control in a team environment.',
+    skills: ['React.js', 'Django REST Framework', 'MySQL', 'User Authentication', 'REST APIs', 'Git']
+  },
+  {
+    type: 'Certification & Training',
+    title: 'Python Full Stack Development',
     organization: 'FITA Academy',
     location: 'Chennai, Tamil Nadu',
-    period: '6 Months Intensive Training',
-    summary: 'Completed six months of hands-on professional training in modern full-stack development, mastering Python programming, MySQL database architecture, JavaScript fundamentals, Django MVC framework, and React.js single-page application development.',
+    period: 'Certified',
+    summary: 'Completed intensive hands-on professional certification and training in modern full-stack development, mastering Python programming, MySQL database architecture, JavaScript fundamentals, Django MVC framework, and React.js single-page application development.',
     skills: ['Python', 'MySQL', 'JavaScript', 'Django', 'React.js', 'REST APIs']
   }
 ];
 
 export const CALLS_TO_ACTION = [
+  { label: 'Download Resume', href: '/assets/Gokul_J_Resume.pdf', variant: 'outline', isExternal: true },
   { label: 'Hire Me', href: '#contact', variant: 'primary' },
   { label: 'Discuss Your Project', href: '#contact', variant: 'secondary' },
   { label: 'View My Work', href: '#projects', variant: 'outline' },

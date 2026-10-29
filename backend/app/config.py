@@ -15,6 +15,14 @@ class Settings(BaseSettings):
     # CORS Origins
     CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000,*"
 
+    # Email notification settings (Gmail SMTP)
+    SMTP_HOST: str = "smtp.gmail.com"
+    SMTP_PORT: int = 587
+    SMTP_USER: str = "jgokul823@gmail.com"
+    SMTP_PASSWORD: str = ""
+    SMTP_USE_TLS: bool = True
+    NOTIFICATION_EMAIL: str = "jgokul823@gmail.com"
+
     # Cloudinary credentials (optional)
     CLOUDINARY_CLOUD_NAME: str = ""
     CLOUDINARY_API_KEY: str = ""

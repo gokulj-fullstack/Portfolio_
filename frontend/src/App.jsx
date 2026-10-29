@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import ThemePicker from './components/ThemePicker';
 
 import HeroSection from './sections/HeroSection';
 import AboutSection from './sections/AboutSection';
@@ -15,10 +14,6 @@ import ContactSection from './sections/ContactSection';
 const SECTION_IDS = ['home', 'about', 'skills', 'projects', 'services', 'experience', 'education', 'contact'];
 
 export default function App() {
-  const [activeTheme, setActiveTheme] = useState(() => {
-    return localStorage.getItem('theme') || 'default';
-  });
-  const [themePickerOpen, setThemePickerOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [selectedService, setSelectedService] = useState('General Inquiry');
   
@@ -26,10 +21,11 @@ export default function App() {
   const isNavigatingRef = useRef(false);
   const navigateTimeoutRef = useRef(null);
 
+  // Lock theme permanently to 'default' (Classic)
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', activeTheme);
-    localStorage.setItem('theme', activeTheme);
-  }, [activeTheme]);
+    document.documentElement.setAttribute('data-theme', 'default');
+    localStorage.setItem('theme', 'default');
+  }, []);
 
   // Reliable, jitter-free scroll spy
   useEffect(() => {
@@ -91,10 +87,6 @@ export default function App() {
     }
   };
 
-  const handleSelectTheme = (themeId) => {
-    setActiveTheme(themeId);
-  };
-
   const handleSelectServiceFromCard = (serviceTitle) => {
     setSelectedService(serviceTitle);
     handleNavigate('contact');
@@ -102,18 +94,9 @@ export default function App() {
 
   return (
     <div className="layout" role="document">
-      <ThemePicker
-        isOpen={themePickerOpen}
-        onClose={() => setThemePickerOpen(false)}
-        activeTheme={activeTheme}
-        onSelectTheme={handleSelectTheme}
-      />
-
       <Header
         activeSection={activeSection}
         onNavigate={handleNavigate}
-        themePickerOpen={themePickerOpen}
-        onToggleThemePicker={() => setThemePickerOpen(!themePickerOpen)}
       />
 
       <main className="main container" role="main" id="main" tabIndex="-1">

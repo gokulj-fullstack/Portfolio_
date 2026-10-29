@@ -8,6 +8,8 @@ class EducationInfo(BaseModel):
     university: str
     graduationYear: int
     description: str
+    
+    cgpa: Optional[str] = None
 
 class ProfileResponse(BaseModel):
     name: str
@@ -17,6 +19,8 @@ class ProfileResponse(BaseModel):
     bio: str
     location: str
     email: str
+    phone: Optional[str] = None
+    resumeUrl: Optional[str] = None
     github: str
     linkedin: str
     education: EducationInfo

@@ -33,16 +33,16 @@
         &__header {
             display: flex;
             align-items: center;
-            margin: 0 calc(50% - 50vw) 3rem;
+            margin: 0 0 3rem;
         }
         &__photo {
             width: 40%;
-            padding-bottom: 450px;
+            padding-bottom: 0;
             margin: 0;
         }
         &__intro {
             flex: 1 1 60%;
-            padding: 2rem 3rem;
+            padding: 1rem 0;
         }
         &__content {
             @include container-narrow;

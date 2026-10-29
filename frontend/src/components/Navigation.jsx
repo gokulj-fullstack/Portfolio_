@@ -59,7 +59,11 @@ export default function Navigation({ activeSection, onNavigate }) {
                   whileTap={{ scale: 0.96 }}
                   style={{
                     color: isActive ? 'var(--color-primary)' : 'var(--color-text)',
-                    fontWeight: isActive ? 700 : 500,
+                    fontWeight: isActive ? 700 : 600,
+                    textTransform: 'capitalize',
+                    fontFamily: "'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                    fontSize: '0.9375rem',
+                    letterSpacing: '0.01em',
                     transition: 'color 0.2s ease'
                   }}
                 >

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Github, Mail, Linkedin } from 'lucide-react';
+import { ArrowUp, Github, Mail, Linkedin, FileText } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 export default function Footer() {
@@ -44,10 +44,31 @@ export default function Footer() {
           <br />
           <a href="#services" style={{ marginRight: '0.5rem' }}>Services</a>
           <a href="#projects" style={{ marginRight: '0.5rem' }}>Projects</a>
-          <a href="#contact">Contact</a>
+          <a href="#contact" style={{ marginRight: '0.5rem' }}>Contact</a>
+          <a
+            href={PERSONAL_INFO.resumeUrl || '/assets/Gokul_J_Resume.pdf'}
+            target="_blank"
+            rel="noopener noreferrer"
+            download="Gokul_J_Resume.pdf"
+            style={{ fontWeight: 600, color: 'var(--color-primary)' }}
+          >
+            Resume (PDF)
+          </a>
         </div>
 
         <div className="footer__item footer__item--right">
+          <a
+            href={PERSONAL_INFO.resumeUrl || '/assets/Gokul_J_Resume.pdf'}
+            target="_blank"
+            rel="noopener noreferrer"
+            download="Gokul_J_Resume.pdf"
+            className="footer__icon"
+            title="Download Resume (PDF)"
+            aria-label="Download Resume (PDF)"
+            style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            <FileText size={20} />
+          </a>
           <a
             href={PERSONAL_INFO.github}
             target="_blank"

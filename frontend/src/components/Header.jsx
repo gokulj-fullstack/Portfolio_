@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Navigation from './Navigation';
-import { Palette } from 'lucide-react';
+import { FileText } from 'lucide-react';
+import { PERSONAL_INFO } from '../data/portfolioData';
 
-export default function Header({ activeSection, onNavigate, onToggleThemePicker, themePickerOpen }) {
+export default function Header({ activeSection, onNavigate }) {
   const handleBrandClick = (e) => {
     e.preventDefault();
     if (onNavigate) {
@@ -20,8 +21,20 @@ export default function Header({ activeSection, onNavigate, onToggleThemePicker,
       transition={{ duration: 0.4, ease: 'easeOut' }}
     >
       <div className="header__inner container">
-        <a className="header__brand" href="#home" rel="home" onClick={handleBrandClick}>
+        <a
+          className="header__brand"
+          href="#home"
+          rel="home"
+          onClick={handleBrandClick}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.85rem',
+            textDecoration: 'none'
+          }}
+        >
           <div
+            className="header__avatar-wrapper"
             style={{
               width: 44,
               height: 44,
@@ -46,42 +59,59 @@ export default function Header({ activeSection, onNavigate, onToggleThemePicker,
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
-                objectPosition: 'center 15%'
+                objectPosition: 'center 15%',
+                margin: 0,
+                display: 'block'
               }}
             />
           </div>
-          <span className="header__name">
-            <span>Gokul J</span>
-            <span className="header__verification" aria-hidden="true" title="Verified Full Stack Developer">
-              <svg
-                className="icon icon--verified"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="var(--color-primary)"
-              >
-                <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z" />
-              </svg>
-            </span>
+          <span
+            className="header__name"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              fontFamily: "'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+              fontSize: '1.25rem',
+              fontWeight: 700,
+              letterSpacing: '-0.015em',
+              lineHeight: 1
+            }}
+          >
+            Gokul J
           </span>
         </a>
 
         <div className="header__nav">
           <Navigation activeSection={activeSection} onNavigate={onNavigate} />
 
-          <button
-            type="button"
-            className="iconbtn header__themebtn js-themepicker-toggle"
-            aria-expanded={themePickerOpen}
-            aria-label="Toggle theme picker"
-            onClick={onToggleThemePicker}
-            title="Choose color theme"
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          <a
+            href={PERSONAL_INFO.resumeUrl || '/assets/Gokul_J_Resume.pdf'}
+            target="_blank"
+            rel="noopener noreferrer"
+            download="Gokul_J_Resume.pdf"
+            className="header__resumebtn"
+            title="Download Resume (PDF)"
+            aria-label="Download Resume (PDF)"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              padding: '0.35rem 0.75rem',
+              borderRadius: '0.5rem',
+              fontSize: '0.8125rem',
+              fontWeight: 600,
+              color: 'var(--color-primary)',
+              border: '1px solid var(--color-primary)',
+              textDecoration: 'none',
+              transition: 'all 0.2s ease',
+              marginLeft: '0.5rem',
+              flexShrink: 0
+            }}
           >
-            <Palette size={20} />
-          </button>
+            <FileText size={15} />
+            <span>Resume</span>
+          </a>
         </div>
       </div>
     </motion.header>

@@ -1,6 +1,7 @@
 """
 Automated Test Suite for Gokul J Portfolio FastAPI Backend
 """
+import os
 import sys
 from fastapi.testclient import TestClient
 from app.main import app
@@ -71,11 +72,12 @@ def test_portfolio_experience():
     response = client.get("/api/experience")
     assert response.status_code == 200
     data = response.json()
-    assert len(data) == 2
+    assert len(data) == 3
     orgs = [item["organization"] for item in data]
+    assert "Aminiod AI" in orgs
     assert "GB Tech Corp" in orgs
     assert "FITA Academy" in orgs
-    print("PASS: Experience & training endpoint (/api/experience) verified")
+    print("PASS: Experience & training endpoint (/api/experience) verified (3 entries including Aminiod AI)")
 
 def test_contact_submission_success():
     payload = {
@@ -106,6 +108,54 @@ def test_contact_submission_validation_error():
     assert len(data["detail"]) > 0
     print("PASS: Contact submission validation correctly rejects invalid inputs")
 
+def test_email_service_notification_flow():
+    from unittest.mock import patch, MagicMock
+    from app.services.email_service import EmailService
+    from app.schemas.contact import ContactCreate
+    from app.config import settings
+
+    payload = ContactCreate(
+        name="Alex Mercer",
+        email="alex.mercer@techstartup.io",
+        service="Full Stack SaaS MVP",
+        subject="Urgent MVP Development",
+        message="Hi Gokul, we need an MVP built with React, Vite, and FastAPI within 4 weeks. Let's discuss scope."
+    )
+
+    # 1. Test when SMTP_PASSWORD is blank (graceful fallback)
+    with patch("app.services.email_service.load_dotenv"):
+        with patch.dict(os.environ, {"SMTP_PASSWORD": ""}):
+            settings.SMTP_PASSWORD = ""
+            result_unconfigured = EmailService.send_contact_notification(payload, submission_id=101)
+            assert result_unconfigured is False
+            print("PASS: EmailService correctly falls back when SMTP_PASSWORD is not yet configured")
+
+    # 2. Test when SMTP_PASSWORD is set and SMTP sends successfully
+    with patch("app.services.email_service.load_dotenv"):
+        with patch.dict(os.environ, {"SMTP_PASSWORD": "test-mock-app-password"}):
+            settings.SMTP_PASSWORD = "test-mock-app-password"
+            with patch("smtplib.SMTP") as mock_smtp_cls:
+                mock_server = MagicMock()
+                mock_smtp_cls.return_value.__enter__.return_value = mock_server
+
+                result = EmailService.send_contact_notification(payload, submission_id=102)
+                assert result is True
+
+                # Verify SMTP server setup
+                mock_smtp_cls.assert_called_with(settings.SMTP_HOST, settings.SMTP_PORT, timeout=15)
+                mock_server.starttls.assert_called_once()
+                mock_server.login.assert_called_once_with(settings.SMTP_USER, "test-mock-app-password")
+
+                # Verify email message headers & recipient
+                assert mock_server.send_message.called
+                sent_msg = mock_server.send_message.call_args[0][0]
+                assert sent_msg["To"] == "jgokul823@gmail.com"
+                assert sent_msg["Reply-To"] == "alex.mercer@techstartup.io"
+                assert "Alex Mercer" in sent_msg["Subject"]
+                assert "Urgent MVP Development" in sent_msg["Subject"]
+
+                print("PASS: EmailService dispatches email to jgokul823@gmail.com with correct headers & reply-to")
+
 if __name__ == "__main__":
     print("Running FastAPI backend automated test suite...")
     test_root_endpoint()
@@ -117,4 +167,5 @@ if __name__ == "__main__":
     test_portfolio_experience()
     test_contact_submission_success()
     test_contact_submission_validation_error()
+    test_email_service_notification_flow()
     print("\nALL FASTAPI TESTS PASSED SUCCESSFULLY! 100% SUCCESS.")

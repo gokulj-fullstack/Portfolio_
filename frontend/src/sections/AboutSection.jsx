@@ -1,14 +1,14 @@
 import React from 'react';
 import { PERSONAL_INFO } from '../data/portfolioData';
-import { GraduationCap, Code2, Rocket, Briefcase, Sparkles } from 'lucide-react';
+import { GraduationCap, Code2, Rocket, Briefcase, Sparkles, FileText } from 'lucide-react';
 
 export default function AboutSection() {
   return (
     <section className="section" id="about">
       <div className="about">
-        <div className="about__header" style={{ alignItems: 'center' }}>
-          {/* Magazine-Quality Portrait Card (Background Removed & Aligned) */}
-          <div className="about__photo" style={{ flexShrink: 0, width: '100%', maxWidth: '340px' }}>
+        <div className="about__header">
+          {/* Transparent Profile Portrait Cutout */}
+          <div className="about__photo">
             <div className="about__photo-card">
               <img
                 className="about__photo-card__img"
@@ -16,10 +16,6 @@ export default function AboutSection() {
                 alt="Gokul J — Full Stack Developer"
                 loading="eager"
               />
-              <div className="about__photo-card__badge">
-                <span className="about__photo-card__dot" />
-                <span>Available for Freelance &amp; Full-Stack</span>
-              </div>
             </div>
           </div>
 
@@ -38,6 +34,26 @@ export default function AboutSection() {
             <p>
               Whether it is a custom business website, an e-commerce storefront with automated ordering, or a specialized web application, I emphasize clean architecture, accessible interfaces, and reliable data persistence.
             </p>
+
+            <div style={{ marginTop: '1.75rem', display: 'flex', gap: '0.85rem', flexWrap: 'wrap' }}>
+              <a
+                href={PERSONAL_INFO.resumeUrl || '/assets/Gokul_J_Resume.pdf'}
+                target="_blank"
+                rel="noopener noreferrer"
+                download="Gokul_J_Resume.pdf"
+                className="btn btn--primary"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+              >
+                <FileText size={18} />
+                <span>Download Resume</span>
+              </a>
+              <a
+                href="#contact"
+                className="btn btn--outline"
+              >
+                Let's Talk
+              </a>
+            </div>
           </div>
         </div>
 

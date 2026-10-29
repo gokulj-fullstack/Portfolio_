@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, CheckCircle2, AlertCircle, Loader2, Sparkles, MessageSquare } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, AlertCircle, Loader2, Sparkles, MessageSquare, Phone, FileText } from 'lucide-react';
 import { PERSONAL_INFO, FREELANCE_SERVICES } from '../data/portfolioData';
 
 export default function ContactSection({ selectedService }) {
@@ -34,13 +34,48 @@ export default function ContactSection({ selectedService }) {
     e.preventDefault();
     setStatus({ submitting: true, success: false, message: '', error: false });
 
-    // Client-side quick validation
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+    // Client-side comprehensive validation
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedMessage = formData.message.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
       setStatus({
         submitting: false,
         success: false,
         error: true,
         message: 'Please fill in all required fields (Name, Email, Message).'
+      });
+      return;
+    }
+
+    if (trimmedName.length < 2) {
+      setStatus({
+        submitting: false,
+        success: false,
+        error: true,
+        message: 'Name must be at least 2 characters long.'
+      });
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(trimmedEmail)) {
+      setStatus({
+        submitting: false,
+        success: false,
+        error: true,
+        message: 'Please enter a valid email address (e.g. name@example.com).'
+      });
+      return;
+    }
+
+    if (trimmedMessage.length < 10) {
+      setStatus({
+        submitting: false,
+        success: false,
+        error: true,
+        message: 'Message must be at least 10 characters long to provide sufficient detail.'
       });
       return;
     }
@@ -53,7 +88,13 @@ export default function ContactSection({ selectedService }) {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          name: trimmedName,
+          email: trimmedEmail,
+          service: formData.service || 'General Inquiry',
+          subject: formData.subject ? formData.subject.trim() : null,
+          message: trimmedMessage
+        })
       });
 
       const data = await response.json();
@@ -63,7 +104,7 @@ export default function ContactSection({ selectedService }) {
           submitting: false,
           success: true,
           error: false,
-          message: data.message || 'Thank you for reaching out! Your message has been received successfully.'
+          message: data.message || `Thank you, ${trimmedName}! Your inquiry has been sent to Gokul (jgokul823@gmail.com). You will receive a response shortly.`
         });
         setFormData({
           name: '',
@@ -73,9 +114,17 @@ export default function ContactSection({ selectedService }) {
           message: ''
         });
       } else {
-        const errorDetail = data.detail
-          ? (typeof data.detail === 'string' ? data.detail : JSON.stringify(data.detail))
-          : 'Failed to send message. Please check the information and try again.';
+        let errorDetail = 'Failed to send message. Please check the information and try again.';
+        if (typeof data.detail === 'string') {
+          errorDetail = data.detail;
+        } else if (Array.isArray(data.detail)) {
+          errorDetail = data.detail
+            .map((err) => {
+              const field = err.loc ? err.loc[err.loc.length - 1] : '';
+              return field ? `${field}: ${err.msg}` : err.msg;
+            })
+            .join(' | ');
+        }
         setStatus({
           submitting: false,
           success: false,
@@ -119,6 +168,20 @@ export default function ContactSection({ selectedService }) {
             </div>
           </div>
 
+          {PERSONAL_INFO.phone && (
+            <div className="contact-info__item">
+              <div className="contact-info__icon">
+                <Phone size={20} />
+              </div>
+              <div>
+                <div className="contact-info__title">Direct Phone</div>
+                <a href={`tel:${PERSONAL_INFO.phone}`} className="contact-info__value">
+                  {PERSONAL_INFO.phone}
+                </a>
+              </div>
+            </div>
+          )}
+
           <div className="contact-info__item">
             <div className="contact-info__icon">
               <MapPin size={20} />
@@ -128,6 +191,25 @@ export default function ContactSection({ selectedService }) {
               <span className="contact-info__value">
                 {PERSONAL_INFO.location}
               </span>
+            </div>
+          </div>
+
+          <div className="contact-info__item">
+            <div className="contact-info__icon">
+              <FileText size={20} />
+            </div>
+            <div>
+              <div className="contact-info__title">Official Resume</div>
+              <a
+                href={PERSONAL_INFO.resumeUrl || '/assets/Gokul_J_Resume.pdf'}
+                target="_blank"
+                rel="noopener noreferrer"
+                download="Gokul_J_Resume.pdf"
+                className="contact-info__value"
+                style={{ color: 'var(--color-primary)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.35rem' }}
+              >
+                <span>Download Resume (PDF)</span>
+              </a>
             </div>
           </div>
 

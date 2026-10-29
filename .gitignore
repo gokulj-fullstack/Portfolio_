@@ -17,8 +17,12 @@ env/
 venv/
 ENV/
 .env
+.env.*
+*.env
+!*.env.sample
 *.sqlite3
 *.db
+portfolio.db
 .pytest_cache/
 
 # IDE & OS
@@ -26,3 +30,4 @@ ENV/
 .idea/
 .DS_Store
 Thumbs.db
+mxb/

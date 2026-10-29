@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Briefcase, Sparkles } from 'lucide-react';
+import { ArrowRight, Briefcase, Sparkles, FileText } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 export default function HeroSection() {
@@ -31,7 +31,17 @@ export default function HeroSection() {
             <Sparkles size={18} />
             Hire Me
           </a>
-          <a href="#projects" className="btn btn--secondary">
+          <a
+            href={PERSONAL_INFO.resumeUrl || '/assets/Gokul_J_Resume.pdf'}
+            target="_blank"
+            rel="noopener noreferrer"
+            download="Gokul_J_Resume.pdf"
+            className="btn btn--secondary"
+          >
+            <FileText size={18} />
+            Download Resume
+          </a>
+          <a href="#projects" className="btn btn--outline">
             View My Work
             <ArrowRight size={18} />
           </a>

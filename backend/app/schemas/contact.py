@@ -14,6 +14,7 @@ class ContactResponse(BaseModel):
     message: str
     submission_id: Optional[int] = None
     created_at: Optional[datetime] = None
+    email_notification: Optional[bool] = None
 
 class ContactRecord(BaseModel):
     id: int
