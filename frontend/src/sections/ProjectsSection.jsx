@@ -30,7 +30,7 @@ export default function ProjectsSection() {
                 {project.hasLiveDemo ? (
                   <span className="project-card__badge project-card__badge--live">
                     <span style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: '#fff', display: 'inline-block' }} />
-                    Live Deployment
+                    {project.isClientProject ? '⭐ Freelance Client • Live Demo' : 'Live Deployment'}
                   </span>
                 ) : (
                   <span className="project-card__badge">

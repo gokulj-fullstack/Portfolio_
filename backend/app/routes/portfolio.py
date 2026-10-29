@@ -67,6 +67,24 @@ SKILLS_DATA = {
 
 PROJECTS_DATA = [
     {
+        "id": "nexa-fitness-studio",
+        "title": "NEXA Fitness Studio",
+        "tagline": "Premier 8,000 Sq.Ft Fitness Arena & Athletic Turf Platform",
+        "description": "Commercial freelance web application developed for a premier fitness and sports center in Padappai featuring a 3,000 sq ft AC gym, Olympic deadlift platform, and 5,000 sq ft outdoor turf.",
+        "originalTechnologies": ["React.js", "Vite", "Modern CSS", "Responsive UI"],
+        "primaryTechTags": ["React.js", "Vite", "Responsive Design", "Freelance Client"],
+        "liveDemo": "https://www.nexafitnessstudio.com/",
+        "hasLiveDemo": True,
+        "isClientProject": True,
+        "image": "/assets/images/project_nexa_fitness.jpg",
+        "features": [
+            "3,000 Sq.Ft air-conditioned strength gym with Olympic deadlift platform",
+            "5,000 Sq.Ft outdoor training turf and cross-training zones",
+            "Dedicated training programs including 6-Month Weight Loss & Women's sessions",
+            "Interactive membership lead generation and direct contact conversion"
+        ]
+    },
+    {
         "id": "king-sports-club",
         "title": "King Sports Club",
         "tagline": "Sports Facility Showcase & Turf Booking Platform",
@@ -159,7 +177,7 @@ SERVICES_DATA = [
         "title": "Business Website Development",
         "summary": "Custom corporate and business websites tailored to your brand identity, optimized for conversions, speed, and search engines.",
         "tags": ["Brand Identity", "SEO Optimized", "Mobile Friendly", "Fast Loading"],
-        "relevantProject": "King Sports Club"
+        "relevantProject": "NEXA Fitness Studio & King Sports Club"
     },
     {
         "id": "ecommerce-website",
@@ -173,14 +191,14 @@ SERVICES_DATA = [
         "title": "Sports and Fitness Websites",
         "summary": "Dedicated digital platforms for sports arenas, fitness studios, and turf facilities with real-time court booking and schedule displays.",
         "tags": ["Slot Booking", "Arena Showcase", "Timetable Calendars", "Interactive UI"],
-        "relevantProject": "King Sports Club"
+        "relevantProject": "NEXA Fitness Studio & King Sports Club"
     },
     {
         "id": "responsive-frontend",
         "title": "Responsive Frontend Development",
         "summary": "Pixel-perfect, fluid web interfaces built using React.js and Vite, ensuring an intuitive user experience on smartphones, tablets, and desktops.",
         "tags": ["React.js", "Vite", "Modern CSS", "Cross-Device"],
-        "relevantProject": "All Projects"
+        "relevantProject": "NEXA Fitness Studio, King Sports Club & Magic Box"
     },
     {
         "id": "fullstack-web-apps",

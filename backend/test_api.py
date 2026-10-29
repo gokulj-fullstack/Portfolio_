@@ -50,14 +50,15 @@ def test_portfolio_projects():
     response = client.get("/api/projects")
     assert response.status_code == 200
     data = response.json()
-    assert len(data) == 5
+    assert len(data) == 6
     titles = [p["title"] for p in data]
+    assert "NEXA Fitness Studio" in titles
     assert "King Sports Club" in titles
     assert "Magic Box" in titles
     assert "AI Legal Document Analysis" in titles
     assert "Django Bank Management System" in titles
     assert "AI Pipeline Generator" in titles
-    print("PASS: Projects endpoint (/api/projects) verified (5 projects)")
+    print("PASS: Projects endpoint (/api/projects) verified (6 projects)")
 
 def test_portfolio_services():
     response = client.get("/api/services")
