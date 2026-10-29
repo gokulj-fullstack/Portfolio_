@@ -1,20 +1,55 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import Navigation from './Navigation';
 import { Palette } from 'lucide-react';
 
-export default function Header({ activeSection, onToggleThemePicker, themePickerOpen }) {
+export default function Header({ activeSection, onNavigate, onToggleThemePicker, themePickerOpen }) {
+  const handleBrandClick = (e) => {
+    e.preventDefault();
+    if (onNavigate) {
+      onNavigate('home');
+    }
+  };
+
   return (
-    <header className="header" role="banner">
+    <motion.header
+      className="header"
+      role="banner"
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
+    >
       <div className="header__inner container">
-        <a className="header__brand" href="#home" rel="home">
-          <img
-            className="header__avatar"
-            src="/assets/images/gokul_avatar.jpg"
-            alt="Gokul J"
-            width="48"
-            height="48"
-            style={{ borderRadius: '50%', objectFit: 'cover' }}
-          />
+        <a className="header__brand" href="#home" rel="home" onClick={handleBrandClick}>
+          <div
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: '50%',
+              overflow: 'hidden',
+              backgroundColor: 'var(--color-bg-offset)',
+              border: '2px solid var(--color-primary)',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
+            }}
+          >
+            <img
+              className="header__avatar"
+              src="/assets/images/gokul_transparent.png"
+              alt="Gokul J"
+              width="44"
+              height="44"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center 15%'
+              }}
+            />
+          </div>
           <span className="header__name">
             <span>Gokul J</span>
             <span className="header__verification" aria-hidden="true" title="Verified Full Stack Developer">
@@ -34,7 +69,7 @@ export default function Header({ activeSection, onToggleThemePicker, themePicker
         </a>
 
         <div className="header__nav">
-          <Navigation activeSection={activeSection} />
+          <Navigation activeSection={activeSection} onNavigate={onNavigate} />
 
           <button
             type="button"
@@ -49,6 +84,6 @@ export default function Header({ activeSection, onToggleThemePicker, themePicker
           </button>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }

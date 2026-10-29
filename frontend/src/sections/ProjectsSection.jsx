@@ -77,10 +77,18 @@ export default function ProjectsSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn--primary"
-                      style={{ fontSize: '0.875rem', padding: '0.5rem 1rem' }}
+                      style={{
+                        fontSize: '0.875rem',
+                        padding: '0.55rem 1.15rem',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.5rem',
+                        fontWeight: 700
+                      }}
                     >
+                      <span style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: '#10b981', boxShadow: '0 0 8px #10b981' }} />
                       <ExternalLink size={16} />
-                      View Live Demo
+                      Live Demo
                     </a>
                   ) : null}
                   <a

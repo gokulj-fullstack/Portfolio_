@@ -3,6 +3,15 @@
 @import 'utils/variables';
 @import 'utils/mixins';
 
+html {
+    scroll-behavior: smooth;
+}
+
+.section,
+.hero {
+    scroll-margin-top: 5.5rem;
+}
+
 .section {
     padding: 3.5rem 0;
     position: relative;
@@ -689,5 +698,127 @@
     &:disabled {
         opacity: 0.6;
         cursor: not-allowed;
+    }
+}
+
+// ---------------------------------
+// FRAMER MOTION NAVBAR & DESKTOP OVERRIDES
+// ---------------------------------
+
+// Disable the old static CSS underline so Framer Motion's sliding indicator handles it
+.nav__item::after {
+    display: none !important;
+}
+
+.nav__item {
+    position: relative;
+}
+
+.nav__active-indicator {
+    position: absolute;
+    bottom: -3px;
+    left: 1.25rem;
+    right: 1.25rem;
+    height: 3px;
+    background-color: var(--color-primary);
+    border-radius: 2px;
+    z-index: 2;
+}
+
+// Desktop & Laptop: Strictly Hide Hamburger Toggle
+@media (min-width: 940px) {
+    .nav__togglebtn {
+        display: none !important;
+    }
+
+    .nav__content {
+        display: flex !important;
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        background: transparent !important;
+    }
+
+    .nav__menu {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .nav__bg {
+        display: none !important;
+    }
+}
+
+// Mobile specific drawer enhancement
+@media (max-width: 939px) {
+    .nav__togglebtn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+// ---------------------------------
+// ABOUT SECTION DEVELOPER PHOTO CARD
+// ---------------------------------
+.about__photo-card {
+    position: relative;
+    border-radius: 1.5rem;
+    background: radial-gradient(circle at 50% 25%, rgba(var(--color-primary-rgb, 255, 82, 119), 0.15) 0%, var(--color-bg-offset) 75%);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.14);
+    overflow: hidden;
+    max-width: 340px;
+    margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 22px 45px -12px rgba(0, 0, 0, 0.2);
+    }
+
+    &__img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        object-position: center top;
+        transition: transform 0.4s ease;
+    }
+
+    &__badge {
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem;
+        padding: 0.65rem 0.85rem;
+        border-radius: 0.75rem;
+        background-color: var(--color-bg);
+        border: 1px solid var(--color-border);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--color-text);
+        backdrop-filter: blur(8px);
+    }
+
+    &__dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #10b981;
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+        flex-shrink: 0;
     }
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -15,62 +16,105 @@ const NAV_ITEMS = [
 export default function Navigation({ activeSection, onNavigate }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleLinkClick = (href) => {
+  const handleLinkClick = (e, href) => {
+    e.preventDefault();
     setMobileOpen(false);
+    const targetId = href.replace('#', '');
     if (onNavigate) {
-      onNavigate(href);
+      onNavigate(targetId);
     }
   };
 
   return (
     <nav className={`nav js-nav ${mobileOpen ? 'is-open' : ''}`} role="navigation">
+      {/* Mobile-Only Hamburger Toggle Button (Hidden on Laptops & Desktops) */}
       <button
         type="button"
         className="iconbtn nav__togglebtn js-nav-toggle"
         aria-expanded={mobileOpen}
         aria-label="Toggle navigation menu"
         onClick={() => setMobileOpen(!mobileOpen)}
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
       >
         {mobileOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
-      <div
-        className="nav__content"
-        style={{
-          display: mobileOpen ? 'flex' : undefined,
-          opacity: mobileOpen ? 1 : undefined,
-          visibility: mobileOpen ? 'visible' : undefined
-        }}
-      >
+      {/* Desktop Horizontal Navigation & Mobile Drawer with Framer Motion */}
+      <div className="nav__content">
         <ul className="nav__menu js-nav-menu" id="nav-menu">
           {NAV_ITEMS.map((item) => {
-            const isActive = activeSection === item.href.replace('#', '');
+            const sectionId = item.href.replace('#', '');
+            const isActive = activeSection === sectionId;
             return (
               <li
                 key={item.href}
                 className={`nav__item ${isActive ? 'nav__item--active' : ''}`}
+                style={{ position: 'relative' }}
               >
-                <a
+                <motion.a
                   href={item.href}
                   className="nav__link"
-                  onClick={() => handleLinkClick(item.href)}
+                  onClick={(e) => handleLinkClick(e, item.href)}
                   aria-current={isActive ? 'page' : undefined}
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.96 }}
+                  style={{
+                    color: isActive ? 'var(--color-primary)' : 'var(--color-text)',
+                    fontWeight: isActive ? 700 : 500,
+                    transition: 'color 0.2s ease'
+                  }}
                 >
-                  <span className="nav__num" aria-hidden="true">
+                  <span
+                    className="nav__num"
+                    aria-hidden="true"
+                    style={{
+                      color: isActive ? 'var(--color-primary)' : 'var(--color-text-offset)',
+                      opacity: isActive ? 1 : 0.7
+                    }}
+                  >
                     {item.num}
                   </span>
                   {item.label}
-                </a>
+                </motion.a>
+
+                {/* Framer Motion Dynamic Sliding Indicator */}
+                {isActive && (
+                  <motion.div
+                    layoutId="activeNavIndicator"
+                    className="nav__active-indicator"
+                    transition={{
+                      type: 'spring',
+                      stiffness: 400,
+                      damping: 32
+                    }}
+                  />
+                )}
               </li>
             );
           })}
         </ul>
       </div>
 
-      <div className="nav__bg">
-        <div className="nav__bg__circle" />
-      </div>
+      {/* Mobile Drawer Backdrop when open */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            className="mobile-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setMobileOpen(false)}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              backgroundColor: 'rgba(0, 0, 0, 0.4)',
+              zIndex: 90
+            }}
+          />
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

@@ -33,9 +33,9 @@ export default function Footer() {
         <div className="footer__item">
           <strong>Core Stack</strong>
           <br />
-          <span>React.js &bull; Vite &bull; FastAPI</span>
+          <span>React.js &bull; FastAPI &bull; Django</span>
           <div style={{ fontSize: '0.8125rem', color: 'var(--color-text-offset)' }}>
-            Python &bull; SQL &bull; Modern Web
+            Vite &bull; Python &bull; SQL &bull; Web
           </div>
         </div>
 

@@ -15,9 +15,9 @@ PROFILE_DATA = {
     "role": "Full Stack Developer | Freelancer",
     "headline": "I make modern websites & full-stack web applications.",
     "subheadline": "Full Stack Developer & Freelancer",
-    "bio": "Computer Science & Engineering graduate from Tagore Engineering College (Anna University, 2025). Passionate about building modern, high-performance web applications, robust REST APIs, and scalable technology solutions for businesses and individual clients.",
+    "bio": "Computer Science & Engineering graduate from Tagore Engineering College (Anna University, 2025). Passionate about building modern, high-performance web applications, robust REST APIs, and scalable technology solutions for businesses and individual clients using React.js, Vite, FastAPI, and Django.",
     "location": "Chennai, Tamil Nadu, India",
-    "email": "gokul.dev2025@gmail.com",
+    "email": "jgokul823@gmail.com",
     "github": "https://github.com",
     "linkedin": "https://linkedin.com",
     "education": {

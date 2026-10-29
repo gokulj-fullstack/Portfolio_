@@ -1,29 +1,28 @@
 import React from 'react';
 import { PERSONAL_INFO } from '../data/portfolioData';
-import { GraduationCap, Code2, Rocket, Briefcase } from 'lucide-react';
+import { GraduationCap, Code2, Rocket, Briefcase, Sparkles } from 'lucide-react';
 
 export default function AboutSection() {
   return (
     <section className="section" id="about">
       <div className="about">
-        <div className="about__header" style={{ alignItems: 'flex-start' }}>
-          <div className="about__photo" style={{ flexShrink: 0 }}>
-            <img
-              className="responsive-image"
-              src="/assets/images/gokul_avatar.jpg"
-              alt="Gokul J — Full Stack Developer"
-              style={{
-                borderRadius: '0.875rem',
-                border: '1px solid var(--color-border)',
-                width: '100%',
-                maxWidth: '360px',
-                aspectRatio: '4/5',
-                objectFit: 'cover',
-                objectPosition: 'center 15%',
-                boxShadow: '0 12px 28px -6px rgba(0, 0, 0, 0.15)'
-              }}
-            />
+        <div className="about__header" style={{ alignItems: 'center' }}>
+          {/* Magazine-Quality Portrait Card (Background Removed & Aligned) */}
+          <div className="about__photo" style={{ flexShrink: 0, width: '100%', maxWidth: '340px' }}>
+            <div className="about__photo-card">
+              <img
+                className="about__photo-card__img"
+                src="/assets/images/gokul_transparent.png"
+                alt="Gokul J — Full Stack Developer"
+                loading="eager"
+              />
+              <div className="about__photo-card__badge">
+                <span className="about__photo-card__dot" />
+                <span>Available for Freelance &amp; Full-Stack</span>
+              </div>
+            </div>
           </div>
+
           <div className="about__intro lead">
             <h2 className="section__title" style={{ marginTop: 0 }}>
               Hey there, I’m Gokul.
@@ -34,7 +33,7 @@ export default function AboutSection() {
               <strong>Tagore Engineering College, Anna University (Class of 2025)</strong>.
             </p>
             <p>
-              My focus is on designing and developing responsive frontends with <strong>React.js</strong> and <strong>Vite</strong>, coupled with high-performance, strictly validated backends using <strong>Python</strong> and <strong>FastAPI</strong>.
+              My focus is on designing and developing responsive frontends with <strong>React.js</strong> and <strong>Vite</strong>, coupled with high-performance, strictly validated backends using <strong>Python</strong>, <strong>FastAPI</strong>, and <strong>Django</strong>.
             </p>
             <p>
               Whether it is a custom business website, an e-commerce storefront with automated ordering, or a specialized web application, I emphasize clean architecture, accessible interfaces, and reliable data persistence.

@@ -15,8 +15,9 @@ export default function HeroSection() {
           <p>
             I’m a <strong>Full Stack Developer</strong> and <strong>Freelancer</strong> specializing in{' '}
             <a href="#projects" className="hero__link">React.js</a>,{' '}
-            <a href="#skills" className="hero__link">Vite</a>, and{' '}
-            <a href="#skills" className="hero__link">FastAPI</a>.
+            <a href="#skills" className="hero__link">Vite</a>,{' '}
+            <a href="#skills" className="hero__link">FastAPI</a>, and{' '}
+            <a href="#skills" className="hero__link">Django</a>.
             <br className="hero__br" />
             Graduating with a B.E. in Computer Science &amp; Engineering from{' '}
             <a href="#education" className="hero__link">Tagore Engineering College (Anna University)</a>.

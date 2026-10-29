@@ -3,9 +3,9 @@ export const PERSONAL_INFO = {
   role: 'Full Stack Developer | Freelancer',
   headline: 'I make modern websites & full-stack web applications.',
   subheadline: 'Full Stack Developer & Freelancer',
-  bio: 'Computer Science & Engineering graduate from Tagore Engineering College (Anna University, 2025). Passionate about building modern, high-performance web applications, robust REST APIs, and scalable technology solutions for businesses and individual clients.',
+  bio: 'Computer Science & Engineering graduate from Tagore Engineering College (Anna University, 2025). Passionate about building modern, high-performance web applications, robust REST APIs, and scalable technology solutions for businesses and individual clients using React.js, Vite, FastAPI, and Django.',
   location: 'Chennai, Tamil Nadu, India',
-  email: 'gokul.dev2025@gmail.com', // Professional placeholder or configurable
+  email: 'jgokul823@gmail.com',
   github: 'https://github.com',
   linkedin: 'https://linkedin.com',
   education: {
@@ -36,10 +36,10 @@ export const TECHNICAL_SKILLS = {
     { name: 'Responsive Web Design', tag: 'Design', desc: 'Mobile-first, cross-browser compatible, fluid typography' }
   ],
   backend: [
-    { name: 'FastAPI', tag: 'Core Backend', desc: 'High-performance async Python REST APIs with automatic OpenAPI docs' },
-    { name: 'Pydantic', tag: 'Validation', desc: 'Data parsing, strict schema validation, type safety' },
-    { name: 'REST APIs', tag: 'Architecture', desc: 'RESTful API design, HTTP semantics, JSON payloads, CORS' },
-    { name: 'Django & DRF', tag: 'Previous Project Experience', desc: 'Django MVC, Django REST Framework viewsets and serializers' }
+    { name: 'FastAPI', tag: 'Core Backend', desc: 'High-performance async Python REST APIs with automatic OpenAPI docs & Pydantic' },
+    { name: 'Django & DRF', tag: 'Core Backend', desc: 'Full-stack Django web development, ORM, authentication, Django REST Framework APIs' },
+    { name: 'REST APIs', tag: 'Architecture', desc: 'RESTful API design, HTTP semantics, JSON payloads, CORS, token auth' },
+    { name: 'Pydantic', tag: 'Validation', desc: 'Data parsing, strict schema validation, type safety' }
   ],
   databases: [
     { name: 'MySQL', type: 'Relational DB', desc: 'Relational table design, indexes, transactional queries' },
@@ -78,7 +78,7 @@ export const PROJECTS = [
     description: 'An online gift shop featuring product browsing, product categories, a shopping cart, and WhatsApp-based ordering.',
     originalTechnologies: ['React.js', 'Django REST Framework', 'PostgreSQL', 'Cloudinary'],
     primaryTechTags: ['React.js', 'Django REST Framework', 'PostgreSQL', 'Cloudinary'],
-    liveDemo: 'https://magic-box-1.onrender.com',
+    liveDemo: 'https://magic-box-1.onrender.com/',
     hasLiveDemo: true,
     image: '/assets/images/project_magic_box.jpg',
     features: [
@@ -173,16 +173,16 @@ export const FREELANCE_SERVICES = [
   {
     id: 'fullstack-web-apps',
     title: 'Full-Stack Web Application Development',
-    summary: 'End-to-end web applications seamlessly coupling dynamic React interfaces with high-performance FastAPI backends and relational databases.',
-    tags: ['React + FastAPI', 'End-to-End', 'Database Driven', 'Scalable'],
+    summary: 'End-to-end web applications seamlessly coupling dynamic React interfaces with high-performance FastAPI or Django backends and relational databases.',
+    tags: ['React + FastAPI', 'React + Django', 'Database Driven', 'Scalable'],
     relevantProject: 'King Sports Club & Magic Box'
   },
   {
     id: 'rest-api-development',
     title: 'REST API Development',
-    summary: 'Clean, secure, and documented RESTful web services developed with FastAPI and Pydantic validation for web and mobile frontends.',
-    tags: ['FastAPI', 'Pydantic Models', 'OpenAPI / Swagger', 'JSON APIs'],
-    relevantProject: 'AI Legal Doc & Portfolio Backend'
+    summary: 'Clean, secure, and documented RESTful web services developed with FastAPI and Django REST Framework for web and mobile applications.',
+    tags: ['FastAPI', 'Django REST Framework', 'Pydantic Models', 'OpenAPI / Swagger'],
+    relevantProject: 'Magic Box & King Sports Club'
   },
   {
     id: 'database-integration',
